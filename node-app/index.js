@@ -1,33 +1,43 @@
-const express = require('express')
-var cors = require('cors')
+const express = require('express');
 const path = require('path');
-var bodyParser = require('body-parser')
-const app = express()
-const port = 3000
+const bodyParser = require('body-parser');
 
-// Allow all CORS conflicts
-app.use(cors())
+const app = express();
+const port = 3000;
 
-// Parse application/json
-app.use(bodyParser.json())
+// Store messages in memory (use a database in a real application)
+let messages = [];
 
-// Serve static files (CSS, JS, images)
+// Middleware
+app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, 'web-page')));
 
+// Endpoint to send a message
 app.post('/send-message', (req, res) => {
-  const message = req.body;
-  console.log(message);
+  const { sender, message } = req.body;
 
-  res.json('Hello World!')
-})
+  if (!sender || !message) {
+    return res.status(400).json({ error: 'Sender and message are required.' });
+  }
 
-app.use('/web-page', express.static('css'));
+  // Add the message to the message list
+  messages.push({ sender, message });
 
-// Serve the HTML file
-app.get('/', async (req, res) => {
+  console.log(`[${sender}]: ${message}`);
+  res.json({ success: true });
+});
+
+// Endpoint to get all messages
+app.get('/get-messages', (req, res) => {
+  res.json(messages);
+});
+
+// Serve HTML
+app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'web-page', 'index.html'));
 });
 
+// Start the server
 app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`)
-})
+  console.log(`Server is running at http://localhost:${port}`);
+});

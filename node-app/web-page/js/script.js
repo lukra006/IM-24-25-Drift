@@ -1,37 +1,51 @@
-function handleButtonClick() {
-  // URLen du vil sende data til
-  const url = 'http://localhost:3000/send-message';
 
-  let param1 = document.getElementById('ipadresse').value;
-  let param2 = document.getElementById('message').value;
 
-  // Data som skal sendes i forespørselen
-  const requestBody = {
-    param1: param1, // Bytt ut med ønsket verdi
-    param2: param2  // Bytt ut med ønsket verdi
-  };
+const serverURL = 'http://localhost:3000';
 
-  // Gjøre en POST-forespørsel
-  fetch(url, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(requestBody)
-  })
-    .then(response => {
-      // Sjekk om responsen er vellykket
-      if (!response.ok) {
-        throw new Error(`HTTP-feil! Status: ${response.status}`);
+    // Function to send a message
+    async function sendMessage() {
+
+      let param1 = document.getElementById('ipadresse').value;
+      let param2 = document.getElementById('message').value;
+
+      if (!sender || !message) {
+        alert('Please enter your name and message.');
+        return;
       }
-      return response.json(); // Konverterer responsen til JSON
-    })
-    .then(data => {
-      // Behandler dataen her
-      console.log('Data mottatt:', data);
-    })
-    .catch(error => {
-      // Håndterer eventuelle feil
-      console.error('Noe gikk galt:', error);
-    });
-}
+
+      try {
+        await fetch(`${serverURL}/send-message`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ param1, param2 }),
+        });
+
+        document.getElementById('message').value = '';
+        getMessages(); // Refresh messages after sending
+      } catch (err) {
+        console.error('Failed to send message:', err);
+      }
+    }
+
+    // Function to get all messages
+    async function getMessages() {
+
+      let fra = document.getElementById('fra').innerHTML;
+      let melding = document.getElementById('melding').innerHTML;
+      
+      try {
+        const response = await fetch('/get-messages');
+
+        const messages = await response.json();
+
+        document.getElementById('fra').innerHTML = 'Fra: '+messages[0];
+        document.getElementById('melding').innerHTML = 'Melding: '+messages[1];
+
+      } catch (err) {
+        console.error('Failed to fetch messages:', err);
+      }
+    }
+
+    // Poll for new messages every 2 seconds
+    setInterval(getMessages, 3000);
+
