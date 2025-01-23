@@ -9,9 +9,9 @@
       let fra = document.getElementById('fra-ipadresse').value;
       let message = document.getElementById('message').value;
 
-      let serverURL = 'http://'+sender+':3000';
+      let serverURL = 'http://'+til+':3000';
 
-      if (!sender || !message) {
+      if (!til || !message) {
         alert('Please enter your name and message.');
         return;
       }
@@ -41,7 +41,7 @@
         const messages = await response.json();
         console.log(messages);
 
-        document.getElementById('fra').innerHTML = 'Fra: '+messages['sender'];
+        document.getElementById('fra').innerHTML = 'Fra: '+messages['fra'];
         document.getElementById('melding').innerHTML = 'Melding: '+messages['message'];
 
       } catch (err) {
