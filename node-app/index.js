@@ -1,9 +1,11 @@
 const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
+var cors = require('cors')
 
 const app = express();
 const port = 3000;
+app.use(cors())
 
 // Store messages in memory (use a database in a real application)
 let messages = [];
