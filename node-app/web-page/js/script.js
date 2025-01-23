@@ -1,12 +1,14 @@
 
 
-const serverURL = 'http://localhost:3000';
+
 
     // Function to send a message
     async function sendMessage() {
 
       let sender = document.getElementById('ipadresse').value;
       let message = document.getElementById('message').value;
+
+      let serverURL = 'http://'+sender+':3000';
 
       if (!sender || !message) {
         alert('Please enter your name and message.');
@@ -23,7 +25,7 @@ const serverURL = 'http://localhost:3000';
         document.getElementById('message').value = '';
         getMessages(); // Refresh messages after sending
       } catch (err) {
-        console.error('Failed to send message:', err);
+        console.log('Failed to send message:');
       }
     }
 
@@ -40,7 +42,7 @@ const serverURL = 'http://localhost:3000';
         document.getElementById('melding').innerHTML = 'Melding: '+messages[0].message;
 
       } catch (err) {
-        console.error('Failed to fetch messages:', err);
+        console.log('Failed to fetch any message');
       }
     }
 
