@@ -16,16 +16,16 @@ app.use(express.static(path.join(__dirname, 'web-page')));
 
 // Endpoint to send a message
 app.post('/send-message', (req, res) => {
-  const { sender, message } = req.body;
+  const { til, fra, message } = req.body;
 
-  if (!sender || !message) {
+  if (!til || !message) {
     return res.status(400).json({ error: 'Sender and message are required.' });
   }
 
   // Add the message to the message list
-  messages = { sender, message };
+  messages = { til, fra, message };
 
-  console.log(`[${sender}]: ${message}`);
+  console.log(`[${til}]: ${message}`);
   res.json({ success: true });
 });
 

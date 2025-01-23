@@ -5,7 +5,8 @@
     // Function to send a message
     async function sendMessage() {
 
-      let sender = document.getElementById('ipadresse').value;
+      let til = document.getElementById('til-ipadresse').value;
+      let fra = document.getElementById('fra-ipadresse').value;
       let message = document.getElementById('message').value;
 
       let serverURL = 'http://'+sender+':3000';
@@ -19,10 +20,12 @@
         await fetch(`${serverURL}/send-message`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ sender: sender, message: message }),
+          body: JSON.stringify({ til: til, fra: fra, message: message }),
         });
 
         document.getElementById('message').value = '';
+        document.getElementById('fra-ipadresse').value = '';
+        document.getElementById('til-ipadresse').value = '';
         getMessages(); // Refresh messages after sending
       } catch (err) {
         console.log('Failed to send message:');
@@ -38,8 +41,8 @@
         const messages = await response.json();
         console.log(messages);
 
-        document.getElementById('fra').innerHTML = 'Fra: '+messages.sender;
-        document.getElementById('melding').innerHTML = 'Melding: '+messages.message;
+        document.getElementById('fra').innerHTML = 'Fra: '+messages['sender'];
+        document.getElementById('melding').innerHTML = 'Melding: '+messages['message'];
 
       } catch (err) {
         console.log('Failed to fetch any message');
@@ -47,5 +50,5 @@
     }
 
     // Poll for new messages every 2 seconds
-    setInterval(getMessages, 3000);
+    setInterval(getMessages, 2000);
 
