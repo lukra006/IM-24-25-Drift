@@ -38,8 +38,8 @@
         const messages = await response.json();
         console.log(messages);
 
-        document.getElementById('fra').innerHTML = 'Fra: '+messages[0].sender;
-        document.getElementById('melding').innerHTML = 'Melding: '+messages[0].message;
+        document.getElementById('fra').innerHTML = 'Fra: '+messages.sender;
+        document.getElementById('melding').innerHTML = 'Melding: '+messages.message;
 
       } catch (err) {
         console.log('Failed to fetch any message');

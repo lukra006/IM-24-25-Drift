@@ -23,7 +23,7 @@ app.post('/send-message', (req, res) => {
   }
 
   // Add the message to the message list
-  messages.push({ sender, message });
+  messages = { sender, message };
 
   console.log(`[${sender}]: ${message}`);
   res.json({ success: true });
