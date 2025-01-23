@@ -29,6 +29,7 @@
         getMessages(); // Refresh messages after sending
       } catch (err) {
         console.log('Failed to send message:');
+        document.getElementById('error').innerHTML = 'Du har sendt melding til feil IP-adresse';
       }
     }
 
