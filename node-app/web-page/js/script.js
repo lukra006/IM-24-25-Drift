@@ -1,7 +1,5 @@
 
 
-
-
     // Function to send a message
     async function sendMessage() {
 
