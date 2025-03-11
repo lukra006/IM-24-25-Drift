@@ -1,4 +1,4 @@
-# IM-24-25-Drift skoleåret 2024-2015
+# IM-24-25-Drift skoleåret 2024-2025
 ## Følg denne brukerveiledningen for å utføre oppgaven i IT-drift på IM.
 
 1. Clone dette repositoryet til ditt hjemmeområde (Hjemmeområde vil si "Documents->IM->Drift").
