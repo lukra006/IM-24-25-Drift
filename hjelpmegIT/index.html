@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hjelp IT Registrering</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="split-container">
+        <div class="registration-side">
+            <h1>🎒 Hjelp IT Registrering</h1>
+            <form id="registrationForm" class="form-grid">
+                <div class="input-group">
+                    <input type="text" id="name" placeholder=" " required>
+                    <label for="name">Fullt navn</label>
+                    <span class="validation-icon">✓</span>
+                </div>
+
+                <div class="input-group">
+                    <input type="email" id="email" placeholder=" " required>
+                    <label for="email">Skole-e-post</label>
+                    <span class="validation-icon">⚠</span>
+                </div>
+
+                <div class="input-group">
+                    <select id="device" required>
+                        <option value="" disabled selected>Velg enhetstype</option>
+                        <option value="💻 Laptop">💻 Laptop</option>
+                        <option value="📱 Mobil">📱 Mobil</option>
+                        <option value="🖥 PC">🖥 PC</option>
+                        <option value="⌚ Smartklokke">⌚ Smartklokke</option>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <input type="time" id="time" required>
+                    <label for="time">Foretrukket hentetid</label>
+                </div>
+
+                <div class="input-group">
+                    <textarea id="problem" placeholder="Beskriv problemet..." rows="3"></textarea>
+                </div>
+
+                <button type="submit">Send inn ➔</button>
+            </form>
+            <div class="success-message" id="successMessage">
+                Registrering vellykket! 🎉
+            </div>
+        </div>
+
+        <div class="entries-side">
+            <div class="entries-header">
+                <h1>📋 Aktive Registreringer</h1>
+                <button class="clear-button" id="clearAll">Slett alle registreringer</button>
+            </div>
+            <div class="entries-list" id="entriesList">
+                <!-- Registreringer vises her -->
+            </div>
+        </div>
+    </div>
+
+    <script src="js/script.js"></script>
+</body>
+</html>

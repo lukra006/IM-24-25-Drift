@@ -1,0 +1,191 @@
+        :root {
+            --primary: #6C63FF;
+            --secondary: #FF6584;
+            --background: #f8f9fa;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+        }
+
+        .split-container {
+            display: flex;
+            flex-grow: 1;
+            padding: 20px;
+            gap: 20px;
+            width: 100%;
+        }
+
+        .registration-side {
+            flex: 1;
+            max-width: 600px;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(0 0 0 / 0.1);
+            animation: slideInLeft 0.5s ease forwards;
+        }
+
+        .entries-side {
+            flex: 1;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(0 0 0 / 0.1);
+            overflow-y: auto;
+            max-height: 90vh;
+        }
+
+        @keyframes slideInLeft {
+            from { transform: translateX(-50px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        .entries-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .clear-button {
+            background: var(--secondary);
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: opacity 0.3s ease;
+        }
+
+        .clear-button:hover {
+            opacity: 0.9;
+        }
+
+        .empty-state {
+            text-align: center;
+            color: #666;
+            padding: 2rem;
+        }
+
+        .form-grid {
+            display: grid;
+            gap: 1.5rem;
+        }
+
+        .input-group {
+            position: relative;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid #ddd;
+            border-radius: 12px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(108 99 255 / 0.2);
+        }
+
+        .validation-icon {
+            position: absolute;
+            right: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .valid .validation-icon {
+            color: #28a745;
+            opacity: 1;
+        }
+
+        .invalid .validation-icon {
+            color: #dc3545;
+            opacity: 1;
+        }
+
+        button {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+            width: 100%;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+        }
+
+        .success-message {
+            text-align: center;
+            padding: 1rem;
+            background: #d4edda;
+            color: #155724;
+            border-radius: 12px;
+            margin-top: 1rem;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: all 0.3s ease;
+        }
+
+        .show-success {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .entries-list {
+            display: grid;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .entry-card {
+            padding: 1rem;
+            background: white;
+            border: 2px solid #eee;
+            border-radius: 12px;
+            transition: transform 0.2s ease;
+        }
+
+        .entry-card:hover {
+            transform: translateY(-2px);
+        }
+
+        .entry-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 0.5rem;
+        }
+
+        .entry-device {
+            font-size: 1.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .split-container {
+                flex-direction: column;
+                padding: 10px;
+            }
+            
+            .registration-side,
+            .entries-side {
+                max-width: 100%;
+                max-height: none;
+            }
+        }
