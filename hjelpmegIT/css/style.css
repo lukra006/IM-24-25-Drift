@@ -79,6 +79,7 @@
 
         .input-group {
             position: relative;
+            padding-inline-end:2rem;
         }
 
         input, select, textarea {
@@ -88,6 +89,9 @@
             border-radius: 12px;
             font-size: 1rem;
             transition: all 0.3s ease;
+        }
+        textarea {
+            resize: none;
         }
 
         input:focus, select:focus, textarea:focus {
